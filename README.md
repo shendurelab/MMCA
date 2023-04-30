@@ -25,4 +25,4 @@ These scripts are split into multiple sections corresponding to the major analys
 The majority of these scripts were developed with `R/v4.0` on Linux or macOS operating systems. The dependencies of each script can be found at the beginning of each script. All dependencies can be dowloaded from `CRAN` or `BiocManager`.
 
 # Demo
-For those wanting to try it out for your own datasets, the best place to start is our demo scripts. For the lochNESS analysis, check out `demo_lochness.R`. The script takes a processed seurat object, and creates a dataframe with UMAP coordinates and lochNESS that can be used for plotting.
+For those wanting to try it out for your own datasets, the best place to start is our demo scripts. For the lochNESS analysis, check out `demo_lochness.R`. The script takes a processed seurat object, and creates a dataframe with UMAP coordinates and lochNESS that can be used for plotting. In the demo, the dataset is seurat object containing Gli2 KO cells and wildtype cells in the Haematopoiesis trajectory.
