@@ -9,7 +9,7 @@
 
 # Overview
 
-This repository contains data analysis scripts accompanying the manuscript "Single cell, whole embryo phenotyping of pleiotropic disorders of mammalian development", which is currently available on [bioRxiv] (https://www.biorxiv.org/content/10.1101/2022.08.03.500325v1). The comparitive analysis developed for MMCA can be found in section 4 (cell type composition analysis) and section 5 (lochNESS analysis). For more description on these analyses, please check out the methods section of the manuscript. 
+This repository contains data analysis scripts accompanying the manuscript "Single cell, whole embryo phenotyping of pleiotropic disorders of mammalian development", which is currently available on [bioRxiv](https://www.biorxiv.org/content/10.1101/2022.08.03.500325v1). The comparitive analysis developed for MMCA can be found in section 4 (cell type composition analysis) and section 5 (lochNESS analysis). For more description on these analyses, please check out the methods section of the manuscript. 
 
 # Scripts Download
 The scripts and demo datasets can be downloaded through git: 
