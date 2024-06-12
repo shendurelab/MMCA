@@ -130,6 +130,44 @@ saveWidget(fig, paste0(work_path, "/data/main_trajectory/plot/", "global_WT_sub_
 ### step 5, doing louain clustering on WT cells based on 3d UMAP embedding
 ### and then assigning the main trajectories
 
+my_cluster_cells <- function(emb,
+                             pd,
+                             reduction_method = "UMAP", 
+                             k = 20,
+                             cluster_method = "louvain", 
+                             num_iter = 2,
+                             partition_qval = 0.05,
+                             weight = FALSE,
+                             resolution = NULL, 
+                             random_seed = 123, 
+                             verbose = F) {
+    reduction_method <- match.arg(reduction_method)
+    cluster_method <- match.arg(cluster_method)
+    reduced_dim_res <- emb
+    if (verbose) 
+        message("Running ", cluster_method, " clustering algorithm ...")
+    if (cluster_method == "louvain") {
+        cluster_result <- monocle3:::louvain_clustering(data = reduced_dim_res, 
+                                                        pd = pd, k = k, weight = weight, num_iter = num_iter, 
+                                                        random_seed = random_seed, verbose = verbose)
+        if (length(unique(cluster_result$optim_res$membership)) > 1) {
+            cluster_graph_res <- monocle3:::compute_partitions(cluster_result$g, 
+                                                               cluster_result$optim_res, partition_qval, verbose)
+            partitions <- igraph::components(cluster_graph_res$cluster_g)$membership[cluster_result$optim_res$membership]
+            names(partitions) <- row.names(reduced_dim_res)
+            partitions <- as.factor(partitions)
+        }
+        else {
+            partitions <- rep(1, nrow(pd))
+        }
+        clusters <- factor(igraph::membership(cluster_result$optim_res))
+        res <- list(cluster_result = cluster_result, 
+                    partitions = partitions, 
+                    clusters = clusters)
+    }
+    return(res)
+}
+
 rm(list = ls())
 library(monocle3)
 
